@@ -1,0 +1,783 @@
+Title :Munch Mingle a food ordering platform
+
+
+
+import java.util.Scanner;
+
+public class MunchMingle {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to MunchMingle..let's make something delicious food together!");
+        System.out.println("Do you already have an account?");
+        System.out.println("Yes? No?");
+        String response = sc.nextLine().trim().toLowerCase();  // Convert to lowercase for case-insensitivity
+
+        if (response.equals("yes")) {
+            System.out.println("Please wait a second");
+        } else {
+            System.out.println("Please enter your details");
+            System.out.println("Enter Your Username");
+            String Username = sc.nextLine().trim();
+            System.out.println("Enter your password. Note that it must have 8 Characters ");
+            String Password = sc.nextLine().trim();
+            if (Password.length() != 8) {
+                System.out.println("Password must be exactly 8 characters. Try again");
+            } else {
+                System.out.println("Hey " + Username + ", You have logged in successfully.");
+            }
+        }
+
+        int total_bill = 0;  // Initialize total bill
+        String amount = "";   // To hold the list of items ordered
+        boolean moreItems = true; // Flag to check if the user wants more items
+
+        // Inside the main menu loop:
+        while (moreItems) {
+            System.out.println("Today's Specials:");
+            System.out.println("1) Meals - 150");
+            System.out.println("2) Snacks (Sandwich, Momos, Noodles, Burger, Mojito)");
+            System.out.println("3) Idly (3 pieces) - 25");
+            System.out.println("4) Dosa (1 piece) - 15");
+            System.out.println("5) Parotta (1 piece) - 8");
+            System.out.println("6) Poori Masala - 40");
+            System.out.println("7) Fried Rice (Veg) - 50");
+            System.out.println("8) Pongal - 40");
+            System.out.println("9) Chapathi - 50");
+            System.out.println("10) Pasta - 90");
+            System.out.println("11) Juice - 35");
+            System.out.println("12) Soups -45");
+            System.out.println("13) Omlette - 25");
+            System.out.println("14) French Fries - 60");
+            System.out.println("15) Variety Rices - 75");
+            System.out.println("16) Gravy - 100");
+            System.out.println("17) Bread - 40 ");
+            System.out.println("Please select the dish number to proceed:");
+
+            int dishNumber = sc.nextInt();  // Get dish number
+            sc.nextLine();  // Clear buffer after reading integer
+
+            // Correct validation: check if dishNumber is between 1 and 17
+            if (dishNumber < 1 || dishNumber > 17) {
+                System.out.println("Invalid choice! Please select a valid dish number between 1 and 17.");
+                continue;  // Restart the loop if invalid choice
+            }
+
+            // Now, add the logic to proceed with the item selection based on the dish number:
+            String dishName = "";
+            int price = 0;
+
+            switch (dishNumber) {
+                case 1:  // Meals
+                    System.out.println("You selected Meals. Available varieties:");
+                    System.out.println("1) Veg Meals - 150\n2) Mutton Meals - 200\n3) Chicken Meals - 180\n4) Fish Meals - 220\n5) Prawn Meals - 250");
+                    int mealsChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (mealsChoice) {
+                        case 1:
+                            dishName = "Veg Meals";
+                            price = 150;
+                            break;
+                        case 2:
+                            dishName = "Mutton Meals";
+                            price = 200;
+                            break;
+                        case 3:
+                            dishName = "Chicken Meals";
+                            price = 180;
+                            break;
+                        case 4:
+                            dishName = "Fish Meals";
+                            price = 220;
+                            break;
+                        case 5:
+                            dishName = "Prawn Meals";
+                            price = 250;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Meals.");
+                            continue;
+                    }
+                    break;
+
+                case 2:  // Snacks
+                    System.out.println("You selected Snacks. Available options are:");
+                    System.out.println("1) Sandwich\n2) Momos\n3) Noodles\n4) Burger\n5) Mojito");
+                    int snackChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (snackChoice) {
+                        case 1:  // Sandwich
+                            System.out.println("You selected Sandwich. Available varieties:");
+                            System.out.println("1) Veg Sandwich - 70\n2) Cheese Sandwich - 80\n3) Grilled Sandwich - 90\n4) Paneer Sandwich - 85\n5) Corn Sandwich - 75");
+                            int sandwichChoice = sc.nextInt();
+                            sc.nextLine();  // Clear buffer after reading integer
+                            switch (sandwichChoice) {
+                                case 1:
+                                    dishName = "Veg Sandwich";
+                                    price = 70;
+                                    break;
+                                case 2:
+                                    dishName = "Cheese Sandwich";
+                                    price = 80;
+                                    break;
+                                case 3:
+                                    dishName = "Grilled Sandwich";
+                                    price = 90;
+                                    break;
+                                case 4:
+                                    dishName = "Paneer Sandwich";
+                                    price = 85;
+                                    break;
+                                case 5:
+                                    dishName = "Corn Sandwich";
+                                    price = 75;
+                                    break;
+                                default:
+                                    System.out.println("Invalid sandwich choice.");
+                                    continue;
+                            }
+                            break;
+
+                        case 2:  // Momos
+                            System.out.println("You selected Momos. Available varieties:");
+                            System.out.println("1) Veg Momos - 120\n2) Paneer Momos - 130\n3) Chicken Momos - 150\n4) Pork Momos - 160\n5) Steamed Momos - 110");
+                            int momosChoice = sc.nextInt();
+                            sc.nextLine();  // Clear buffer after reading integer
+                            switch (momosChoice) {
+                                case 1:
+                                    dishName = "Veg Momos";
+                                    price = 120;
+                                    break;
+                                case 2:
+                                    dishName = "Paneer Momos";
+                                    price = 130;
+                                    break;
+                                case 3:
+                                    dishName = "Chicken Momos";
+                                    price = 150;
+                                    break;
+                                case 4:
+                                    dishName = "Pork Momos";
+                                    price = 160;
+                                    break;
+                                case 5:
+                                    dishName = "Steamed Momos";
+                                    price = 110;
+                                    break;
+                                default:
+                                    System.out.println("Invalid momos choice.");
+                                    continue;
+                            }
+                            break;
+
+                        case 3:  // Noodles
+                            System.out.println("You selected Noodles. Available varieties:");
+                            System.out.println("1) Veg Noodles - 120\n2) Hakka Noodles - 130\n3) Schezwan Noodles - 150\n4) Chicken Noodles - 180\n5) Egg Noodles - 160");
+                            int noodlesChoice = sc.nextInt();
+                            sc.nextLine();  // Clear buffer after reading integer
+                            switch (noodlesChoice) {
+                                case 1:
+                                    dishName = "Veg Noodles";
+                                    price = 120;
+                                    break;
+                                case 2:
+                                    dishName = "Hakka Noodles";
+                                    price = 130;
+                                    break;
+                                case 3:
+                                    dishName = "Schezwan Noodles";
+                                    price = 150;
+                                    break;
+                                case 4:
+                                    dishName = "Chicken Noodles";
+                                    price = 180;
+                                    break;
+                                case 5:
+                                    dishName = "Egg Noodles";
+                                    price = 160;
+                                    break;
+                                default:
+                                    System.out.println("Invalid noodles choice.");
+                                    continue;
+                            }
+                            break;
+
+                        case 4:  // Burger
+                            System.out.println("You selected Burger. Available varieties:");
+                            System.out.println("1) Veg Burger - 100\n2) Cheese Burger - 120\n3) Chicken Burger - 150\n4) Fish Burger - 170\n5) Paneer Burger - 140");
+                            int burgerChoice = sc.nextInt();
+                            sc.nextLine();  // Clear buffer after reading integer
+                            switch (burgerChoice) {
+                                case 1:
+                                    dishName = "Veg Burger";
+                                    price = 100;
+                                    break;
+                                case 2:
+                                    dishName = "Cheese Burger";
+                                    price = 120;
+                                    break;
+                                case 3:
+                                    dishName = "Chicken Burger";
+                                    price = 150;
+                                    break;
+                                case 4:
+                                    dishName = "Fish Burger";
+                                    price = 170;
+                                    break;
+                                case 5:
+                                    dishName = "Paneer Burger";
+                                    price = 140;
+                                    break;
+                                default:
+                                    System.out.println("Invalid burger choice.");
+                                    continue;
+                            }
+                            break;
+
+                        case 5:  // Mojito
+                            System.out.println("You selected Mojito. Available varieties:");
+                            System.out.println("1) Classic Mojito - 90\n2) Lime Mojito - 100\n3) Mint Mojito - 110\n4) Strawberry Mojito - 120\n5) Blueberry Mojito - 130");
+                            int mojitoChoice = sc.nextInt();
+                            sc.nextLine();  // Clear buffer after reading integer
+                            switch (mojitoChoice) {
+                                case 1:
+                                    dishName = "Classic Mojito";
+                                    price = 90;
+                                    break;
+                                case 2:
+                                    dishName = "Lime Mojito";
+                                    price = 100;
+                                    break;
+                                case 3:
+                                    dishName = "Mint Mojito";
+                                    price = 110;
+                                    break;
+                                case 4:
+                                    dishName = "Strawberry Mojito";
+                                    price = 120;
+                                    break;
+                                case 5:
+                                    dishName = "Blueberry Mojito";
+                                    price = 130;
+                                    break;
+                                default:
+                                    System.out.println("Invalid mojito choice.");
+                                    continue;
+                            }
+                            break;
+
+                        default:
+                            System.out.println("Invalid snack choice.");
+                            continue;
+                    }
+                    break;
+
+
+                case 3:  // Idly
+                    System.out.println("You selected Idly. Available varieties:");
+                    System.out.println("1) Plain Idly - 25\n2) Rawa Idly - 30\n3) Masala Idly - 35\n4) Mini Idly - 20\n5) Sambar Idly - 30");
+                    int idlyChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (idlyChoice) {
+                        case 1:
+                            dishName = "Plain Idly";
+                            price = 25;
+                            break;
+                        case 2:
+                            dishName = "Rawa Idly";
+                            price = 30;
+                            break;
+                        case 3:
+                            dishName = "Masala Idly";
+                            price = 35;
+                            break;
+                        case 4:
+                            dishName = "Mini Idly";
+                            price = 20;
+                            break;
+                        case 5:
+                            dishName = "Sambar Idly";
+                            price = 30;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Idly.");
+                            continue;
+                    }
+                    break;
+
+                case 4:  // Dosa
+                    System.out.println("You selected Dosa. Available varieties:");
+                    System.out.println("1) Plain Dosa - 15\n2) Masala Dosa - 25\n3) Onion Dosa - 20\n4) Rava Dosa - 30\n5) Cheese Dosa - 35\n6) Paper Dosa - 40\n7) Mysore Dosa - 40");
+                    int dosaChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (dosaChoice) {
+                        case 1:
+                            dishName = "Plain Dosa";
+                            price = 15;
+                            break;
+                        case 2:
+                            dishName = "Masala Dosa";
+                            price = 25;
+                            break;
+                        case 3:
+                            dishName = "Onion Dosa";
+                            price = 20;
+                            break;
+                        case 4:
+                            dishName = "Rava Dosa";
+                            price = 30;
+                            break;
+                        case 5:
+                            dishName = "Cheese Dosa";
+                            price = 35;
+                            break;
+                        case 6:
+                            dishName = "Paper Dosa";
+                            price = 40;
+                            break;
+                        case 7:
+                            dishName = "Mysore Dosa";
+                            price = 40;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Dosa.");
+                            continue;
+                    }
+                    break;
+
+                case 5:  // Parotta
+                    System.out.println("You selected Parotta. Available varieties:");
+                    System.out.println("1) Parotta\n2) Poricha Parotta\n3) Veechu Parotta\n4) Kothu Parotta\n5) Egg Kothu Parotta");
+                    int parottaChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (parottaChoice) {
+                        case 1:
+                            dishName = "Parotta";
+                            price = 8;
+                            break;
+                        case 2:
+                            dishName = "Poricha Parotta";
+                            price = 12;
+                            break;
+                        case 3:
+                            dishName = "Veechu Parotta";
+                            price = 15;
+                            break;
+                        case 4:
+                            dishName = "Kothu Parotta";
+                            price = 25;
+                            break;
+                        case 5:
+                            dishName = "Egg Kothu Parotta";
+                            price = 30;
+                            break;
+                        default:
+                            System.out.println("Invalid parotta choice.");
+                            continue;
+                    }
+                    break;
+                case 6:  // Poori Masala
+                    System.out.println("You selected Poori Masala. Available varieties:");
+                    System.out.println("1) Regular Poori Masala - 40\n2) Paneer Poori Masala - 50\n3) Aloo Poori Masala - 45\n4) Cheese Poori Masala - 55\n5) Mixed Veg Poori Masala - 50");
+                    int pooriChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (pooriChoice) {
+                        case 1:
+                            dishName = "Regular Poori Masala";
+                            price = 40;
+                            break;
+                        case 2:
+                            dishName = "Paneer Poori Masala";
+                            price = 50;
+                            break;
+                        case 3:
+                            dishName = "Aloo Poori Masala";
+                            price = 45;
+                            break;
+                        case 4:
+                            dishName = "Cheese Poori Masala";
+                            price = 55;
+                            break;
+                        case 5:
+                            dishName = "Mixed Veg Poori Masala";
+                            price = 50;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Poori Masala.");
+                            continue;
+                    }
+                    break;
+
+                case 7:  // Fried Rice
+                    System.out.println("You selected Fried Rice. Available varieties:");
+                    System.out.println("1) Veg Fried Rice - 60\n2) Egg Fried Rice - 70\n3) Chicken Fried Rice - 80\n4) Prawn Fried Rice - 90\n5) Schezwan Fried Rice - 85");
+                    int friedRiceChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (friedRiceChoice) {
+                        case 1:
+                            dishName = "Veg Fried Rice";
+                            price = 60;
+                            break;
+                        case 2:
+                            dishName = "Egg Fried Rice";
+                            price = 70;
+                            break;
+                        case 3:
+                            dishName = "Chicken Fried Rice";
+                            price = 80;
+                            break;
+                        case 4:
+                            dishName = "Prawn Fried Rice";
+                            price = 90;
+                            break;
+                        case 5:
+                            dishName = "Schezwan Fried Rice";
+                            price = 85;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Fried Rice.");
+                            continue;
+                    }
+                    break;
+
+                case 8:  // Pongal
+                    System.out.println("You selected Pongal. Available varieties:");
+                    System.out.println("1) Plain Pongal - 40\n2) Masala Pongal - 45\n3) Khara Pongal - 50");
+                    int pongalChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (pongalChoice) {
+                        case 1:
+                            dishName = "Plain Pongal";
+                            price = 40;
+                            break;
+                        case 2:
+                            dishName = "Masala Pongal";
+                            price = 45;
+                            break;
+                        case 3:
+                            dishName = "Khara Pongal";
+                            price = 50;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Pongal.");
+                            continue;
+                    }
+                    break;
+
+                case 9:  // Chapati
+                    System.out.println("You selected Chapati. Available varieties:");
+                    System.out.println("1) Plain Chapati - 20\n2) Butter Chapati - 25\n3) Garlic Chapati - 30\n4) Roomali Chapati - 35");
+                    int chapatiChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (chapatiChoice) {
+                        case 1:
+                            dishName = "Plain Chapati";
+                            price = 20;
+                            break;
+                        case 2:
+                            dishName = "Butter Chapati";
+                            price = 25;
+                            break;
+                        case 3:
+                            dishName = "Garlic Chapati";
+                            price = 30;
+                            break;
+                        case 4:
+                            dishName = "Roomali Chapati";
+                            price = 35;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Chapati.");
+                            continue;
+                    }
+                    break;
+
+                case 10:  // Pasta
+                    System.out.println("You selected Pasta. Available varieties:");
+                    System.out.println("1) Veg Pasta - 69\n2) Cheese Pasta - 80\n3) Pesto Pasta - 100\n4) Chicken Pasta - 120\n5) Alfredo Pasta - 130");
+                    int pastaChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (pastaChoice) {
+                        case 1:
+                            dishName = "Veg Pasta";
+                            price = 69;
+                            break;
+                        case 2:
+                            dishName = "Cheese Pasta";
+                            price = 80;
+                            break;
+                        case 3:
+                            dishName = "Pesto Pasta";
+                            price = 100;
+                            break;
+                        case 4:
+                            dishName = "Chicken Pasta";
+                            price = 120;
+                            break;
+                        case 5:
+                            dishName = "Alfredo Pasta";
+                            price = 130;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Pasta.");
+                            continue;
+                    }
+                    break;
+
+                case 11:  // Fresh Juice
+                    System.out.println("You selected Fresh Juice. Available varieties:");
+                    System.out.println("1) Orange - 35\n2) Mango - 40");
+                    int juiceChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (juiceChoice) {
+                        case 1:
+                            dishName = "Orange Juice";
+                            price = 35;
+                            break;
+                        case 2:
+                            dishName = "Mango Juice";
+                            price = 40;
+                            break;
+                        default:
+                            System.out.println("Invalid juice choice.");
+                            continue;
+                    }
+                    break;
+                case 12:  // Soups
+                    System.out.println("You selected Soups. Available varieties:");
+                    System.out.println("1) Tomato Soup - 40\n2) Sweet Corn Soup - 50\n3) Hot & Sour Soup - 60\n4) Veg Clear Soup - 40\n5) Mushroom Soup - 70");
+                    int soupChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (soupChoice) {
+                        case 1:
+                            dishName = "Tomato Soup";
+                            price = 40;
+                            break;
+                        case 2:
+                            dishName = "Sweet Corn Soup";
+                            price = 50;
+                            break;
+                        case 3:
+                            dishName = "Hot & Sour Soup";
+                            price = 60;
+                            break;
+                        case 4:
+                            dishName = "Veg Clear Soup";
+                            price = 40;
+                            break;
+                        case 5:
+                            dishName = "Mushroom Soup";
+                            price = 70;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Soup.");
+                            continue;
+                    }
+                    break;
+                // Clear buffer after reading integer
+
+// Omelette
+                case 13:  // Omelette
+                    System.out.println("You selected Omelette. Available varieties:");
+                    System.out.println("1) Plain Omelette - 25\n2) Cheese Omelette - 35\n3) Masala Omelette - 30\n4) Mushroom Omelette - 40\n5) Veg Omelette - 30");
+                    int omeletteChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (omeletteChoice) {
+                        case 1:
+                            dishName = "Plain Omelette";
+                            price = 25;
+                            break;
+                        case 2:
+                            dishName = "Cheese Omelette";
+                            price = 35;
+                            break;
+                        case 3:
+                            dishName = "Masala Omelette";
+                            price = 30;
+                            break;
+                        case 4:
+                            dishName = "Mushroom Omelette";
+                            price = 40;
+                            break;
+                        case 5:
+                            dishName = "Veg Omelette";
+                            price = 30;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Omelette.");
+                            // Ask user to reselect
+                            continue;
+                    }
+                    break;
+
+// French Fries
+                case 14:  // French Fries
+                    System.out.println("You selected French Fries. Available varieties:");
+                    System.out.println("1) Regular French Fries - 40\n2) Cheese French Fries - 50\n3) Spicy French Fries - 45\n4) Masala French Fries - 50\n5) Garlic French Fries - 45");
+                    int friesChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (friesChoice) {
+                        case 1:
+                            dishName = "Regular French Fries";
+                            price = 40;
+                            break;
+                        case 2:
+                            dishName = "Cheese French Fries";
+                            price = 50;
+                            break;
+                        case 3:
+                            dishName = "Spicy French Fries";
+                            price = 45;
+                            break;
+                        case 4:
+                            dishName = "Masala French Fries";
+                            price = 50;
+                            break;
+                        case 5:
+                            dishName = "Garlic French Fries";
+                            price = 45;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for French Fries.");
+                            continue;
+                    }
+                    break;
+
+// Variety Rices
+                case 15:  // Variety Rices
+                    System.out.println("You selected Variety Rices. Available varieties:");
+                    System.out.println("1) Veg Biryani - 80\n2) Chicken Biryani - 100\n3) Mutton Biryani - 120\n4) Prawn Biryani - 130\n5) Jeera Rice - 50");
+                    int riceChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (riceChoice) {
+                        case 1:
+                            dishName = "Veg Biryani";
+                            price = 80;
+                            break;
+                        case 2:
+                            dishName = "Chicken Biryani";
+                            price = 100;
+                            break;
+                        case 3:
+                            dishName = "Mutton Biryani";
+                            price = 120;
+                            break;
+                        case 4:
+                            dishName = "Prawn Biryani";
+                            price = 130;
+                            break;
+                        case 5:
+                            dishName = "Jeera Rice";
+                            price = 50;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Variety Rice.");
+                            continue;
+                    }
+                    break;
+
+// Gravy
+                case 16:  // Gravy
+                    System.out.println("You selected Gravy. Available varieties:");
+                    System.out.println("1) Paneer Butter Masala - 120\n2) Chicken Curry - 150\n3) Mutton Rogan Josh - 180\n4) Dal Tadka - 90\n5) Veg Korma - 110");
+                    int gravyChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (gravyChoice) {
+                        case 1:
+                            dishName = "Paneer Butter Masala";
+                            price = 120;
+                            break;
+                        case 2:
+                            dishName = "Chicken Curry";
+                            price = 150;
+                            break;
+                        case 3:
+                            dishName = "Mutton Rogan Josh";
+                            price = 180;
+                            break;
+                        case 4:
+                            dishName = "Dal Tadka";
+                            price = 90;
+                            break;
+                        case 5:
+                            dishName = "Veg Korma";
+                            price = 110;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Gravy.");
+                            continue;
+                    }
+                    break;
+                case 17:  // Breads
+                    System.out.println("You selected Breads. Available varieties:");
+                    System.out.println("1) Butter Naan - 30\n2) Garlic Naan - 35\n3) Tandoori Roti - 20\n4) Lachha Paratha - 25\n5) Roomali Roti - 40");
+                    int breadChoice = sc.nextInt();
+                    sc.nextLine();  // Clear buffer after reading integer
+                    switch (breadChoice) {
+                        case 1:
+                            dishName = "Butter Naan";
+                            price = 30;
+                            break;
+                        case 2:
+                            dishName = "Garlic Naan";
+                            price = 35;
+                            break;
+                        case 3:
+                            dishName = "Tandoori Roti";
+                            price = 20;
+                            break;
+                        case 4:
+                            dishName = "Lachha Paratha";
+                            price = 25;
+                            break;
+                        case 5:
+                            dishName = "Roomali Roti";
+                            price = 40;
+                            break;
+                        default:
+                            System.out.println("Invalid choice for Breads.");
+                            continue;
+                    }
+                    break;
+
+
+
+
+                default:
+                    System.out.println("Invalid choice! Please select a valid number.");
+                    continue;
+            }
+
+            // If dish has a price, ask for quantity
+            System.out.println("You selected: " + dishName + " for " + price);
+            System.out.println("How many would you like?");
+            int quantity = sc.nextInt();
+            sc.nextLine();  // Clear buffer after reading integer
+            total_bill += price * quantity;
+            amount += dishName + " - " + (price * quantity) + "\n";
+
+            // Display order summary after each selection
+            System.out.println("You selected: " + dishName);
+            System.out.println("Quantity: " + quantity + " | Price: " + (price * quantity));
+
+            // Ask if the user wants more items
+            System.out.println("Would you like to add more items? (yes/no)");
+            String addMore = sc.nextLine().trim().toLowerCase();  // Convert to lowercase
+            if (addMore.equals("no")) {
+                moreItems = false;
+            }
+        }
+
+        // Ask if the user wants to place the order and display the total bill
+        System.out.println("Would you like to place your order? (yes/no)");
+        String placeOrder = sc.nextLine().trim().toLowerCase();  // Convert to lowercase
+        if (placeOrder.equals("yes")) {
+            System.out.println("Your Order Summary:");
+            System.out.println(amount);
+            System.out.println("Total Bill: " + total_bill);
+        } else {
+            System.out.println("Thank you for visiting! See you next time.");
+        }
+
+        sc.close();
+    }
+}
